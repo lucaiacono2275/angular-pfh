@@ -2,6 +2,13 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:4000',
   firebase: {
-    '<FIREBASE-CONF>'
+    apiKey: "<API-KEY>",
+    authDomain: "<DOMAIN>",
+    databaseURL: "<DB-URL>",
+    projectId: "<PRJ-ID>",
+    storageBucket: "<STORAGE-BUCKET>",
+    messagingSenderId: "<MSG-SND-ID>",
+    appId: "<APP-ID>",
+    measurementId: "<MSRM-ID>"  
   }
 };
