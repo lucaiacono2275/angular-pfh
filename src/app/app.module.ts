@@ -34,7 +34,11 @@ import { SocialUserComponent } from './modules/social-user';
 import {FirebaseUIModule} from 'firebaseui-angular';
 import * as firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
+import { SidenavComponent } from './shared/components/sidenav';
 
+
+import {AppMaterialModule} from './app.material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -53,12 +57,14 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+        AppMaterialModule,
         FirebaseUIModule.forRoot(firebaseUiAuthConfig)
     ],
     declarations: [
@@ -67,7 +73,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
         LoginComponent,
         RegisterComponent,
         AlertComponent,
-        SocialUserComponent
+        SocialUserComponent,
+        SidenavComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
