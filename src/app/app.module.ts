@@ -30,6 +30,26 @@ import { SocialAuthService, SocialUserService } from './core/services';
 import { UserResolver } from './core/resolvers';
 import { SocialUserComponent } from './modules/social-user';
 
+
+import {FirebaseUIModule} from 'firebaseui-angular';
+import * as firebase from 'firebase/app';
+import * as firebaseui from 'firebaseui';
+
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+    }   
+  ],
+  tosUrl: '<your-tos-link>',
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
+};
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -38,7 +58,8 @@ import { SocialUserComponent } from './modules/social-user';
         appRoutingModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-        AngularFireAuthModule // imports firebase/auth, only needed for auth features
+        AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+        FirebaseUIModule.forRoot(firebaseUiAuthConfig)
     ],
     declarations: [
         AppComponent,
